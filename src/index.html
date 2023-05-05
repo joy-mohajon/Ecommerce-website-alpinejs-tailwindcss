@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/dist/output.css" rel="stylesheet" />
+
+    <!-- Alpine js  -->
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.12.0/dist/cdn.min.js"
+    ></script>
   </head>
   <body>
     <header class="flex justify-between bg-slate-800 shadow-md text-white">
@@ -266,8 +272,9 @@
               Cart
             </a>
           </li>
-          <li class="relative">
+          <li x-data="{open: false}" class="relative">
             <a
+              @click="open=!open"
               href="#"
               class="flex items-center py-navbar-item px-navbar-item pr-5 hover:bg-slate-900"
             >
@@ -301,7 +308,12 @@
                 />
               </svg>
             </a>
-            <ul class="absolute z-10 right-0 bg-slate-800 py-2 w-48">
+            <ul
+              @click.outside="open=false"
+              x-show="open"
+              x-transition
+              class="absolute z-10 right-0 bg-slate-800 py-2 w-48"
+            >
               <li>
                 <a
                   href="/src/profile.html"
